@@ -7,7 +7,7 @@ export interface Noticia {
   autor: string;
   fecha?: Date;
   contenido: string;
-  comentarios?: Comentario[]; // Añadir esto
+  comentarios?: Comentario[];
 }
 
 interface Seccion {

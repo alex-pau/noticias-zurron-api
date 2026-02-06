@@ -18,7 +18,6 @@ export class NoticiasService {
   }
 
   async getNoticias(): Promise<Noticia[]> {
-    // Ordenamos por fecha de creación descendente (estilo blog/noticias)
     return this.noticiaModel.find().exec();
   }
 
@@ -28,15 +27,13 @@ export class NoticiasService {
   ): Promise<ResponsePaginated> {
     const skip = (page - 1) * limit;
 
-    // Ejecutamos la búsqueda con paginación y orden descendente por fecha
     const result = await this.noticiaModel
       .find()
-      .sort({ fecha: -1 }) // Requisito PDF: más recientes primero
+      .sort({ fecha: -1 })
       .skip(skip)
       .limit(limit)
       .exec();
 
-    // Contamos el total para que Ionic sepa cuándo parar el Infinite Scroll
     const total = await this.noticiaModel.countDocuments();
 
     return {
