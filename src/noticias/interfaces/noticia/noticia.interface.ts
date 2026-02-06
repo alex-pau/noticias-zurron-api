@@ -1,0 +1,33 @@
+export interface Noticia {
+  _id?: string;
+  imagenes: string[];
+  titulo: string;
+  subtitulo: string;
+  seccion: Seccion;
+  autor: string;
+  fecha?: Date;
+  contenido: string;
+  comentarios?: Comentario[]; // Añadir esto
+}
+
+interface Seccion {
+  nombre: string;
+  icono: string;
+}
+
+interface Comentario {
+  nombre: string;
+  correo: string;
+  texto: string;
+  fecha?: Date;
+}
+
+export interface ResponsePaginated {
+  data: Noticia[];
+  info: {
+    totalNoticias: number;
+    totalPages: number;
+    page: number;
+    limit: number;
+  };
+}
