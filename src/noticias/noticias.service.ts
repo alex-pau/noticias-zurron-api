@@ -5,8 +5,7 @@ import {
   Noticia,
   ResponsePaginated,
 } from './interfaces/noticia/noticia.interface';
-import { NoticiaDto } from './dto/noticia.dto/noticia.dto';
-import { ComentarioDto } from './dto/comentario.dto/comentario.dto';
+import { ComentarioDto, NoticiaDto } from './dto/noticia.dto/noticia.dto';
 
 @Injectable()
 export class NoticiasService {

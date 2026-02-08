@@ -1,8 +1,10 @@
 import {
   IsArray,
+  IsEmail,
   IsNotEmpty,
   IsOptional,
   IsString,
+  MinLength,
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
@@ -31,11 +33,6 @@ export class NoticiaDto {
   @IsNotEmpty()
   subtitulo: string;
 
-  @ValidateNested()
-  @Type(() => SeccionDto)
-  @IsNotEmpty()
-  seccion: SeccionDto;
-
   @IsString()
   @IsNotEmpty()
   autor: string;
@@ -46,4 +43,31 @@ export class NoticiaDto {
   @IsString()
   @IsNotEmpty()
   contenido: string;
+
+  @ValidateNested()
+  @Type(() => SeccionDto)
+  @IsNotEmpty()
+  seccion: SeccionDto;
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => ComentarioDto)
+  comentarios: ComentarioDto[];
+}
+
+export class ComentarioDto {
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(3)
+  nombre: string;
+
+  @IsEmail()
+  @IsNotEmpty()
+  correo: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(2)
+  texto: string;
 }

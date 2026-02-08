@@ -12,10 +12,8 @@ import {
   Query,
 } from '@nestjs/common';
 import { NoticiasService } from './noticias.service';
-import { NoticiaDto } from './dto/noticia.dto/noticia.dto';
-import { Noticia } from './interfaces/noticia/noticia.interface';
+import { ComentarioDto, NoticiaDto } from './dto/noticia.dto/noticia.dto';
 import { PaginationDto } from './dto/pagination.dto/pagination.dto';
-import { ComentarioDto } from './dto/comentario.dto/comentario.dto';
 
 @Controller('noticias')
 export class NoticiasController {
