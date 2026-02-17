@@ -10,6 +10,10 @@ import {
 import { Type } from 'class-transformer';
 
 class SeccionDto {
+  @IsOptional()
+  @IsString()
+  _id?: string;
+
   @IsString()
   @IsNotEmpty()
   nombre: string;

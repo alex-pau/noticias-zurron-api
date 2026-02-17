@@ -10,6 +10,7 @@ const ComentarioSchema = new Schema({
 const SeccionSchema = new Schema({
   nombre: { type: String, required: true },
   icono: { type: String, required: true },
+  _id: { type: Schema.Types.ObjectId, required: false }
 });
 
 export const NoticiaSchema = new Schema(
