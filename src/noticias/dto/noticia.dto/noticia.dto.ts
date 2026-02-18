@@ -24,6 +24,10 @@ class SeccionDto {
 }
 
 export class NoticiaDto {
+  @IsOptional()
+  @IsString()
+  _id?: string;
+
   @IsArray()
   @IsString({ each: true })
   @IsNotEmpty({ each: true })
