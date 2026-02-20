@@ -119,4 +119,30 @@ export class NoticiasService {
     }
     return updateNoticia;
   }
+
+  async getNoticiasBySeccionPaginated(
+    seccion: string,
+    page: number,
+    limit: number,
+  ) {
+    const skip = (page - 1) * limit;
+    const [data, total] = await Promise.all([
+      this.noticiaModel
+        .find({ 'seccion.nombre': seccion })
+        .skip(skip)
+        .limit(limit)
+        .exec(),
+      this.noticiaModel.countDocuments({ 'seccion.nombre': seccion }).exec(),
+    ]);
+
+    return {
+      data,
+      info: {
+        totalNoticias: total,
+        totalPages: Math.ceil(total / limit),
+        page,
+        limit,
+      },
+    };
+  }
 }

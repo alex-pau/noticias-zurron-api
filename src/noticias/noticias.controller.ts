@@ -103,14 +103,24 @@ export class NoticiasController {
   }
 
   @Get('seccion/:seccion')
-  async getNoticiasBySeccion(@Param('seccion') seccion: string) {
+  async getNoticiasBySeccion(
+    @Param('seccion') seccion: string,
+    @Query() paginationDto: PaginationDto,
+  ) {
     try {
-      const data = await this.noticiasService.getNoticiasBySeccion(seccion);
+      const page = paginationDto.page || 1;
+      const limit = paginationDto.limit || 5;
+
+      const data = await this.noticiasService.getNoticiasBySeccionPaginated(
+        seccion,
+        page,
+        limit,
+      );
       return {
         status: true,
-        noticias: data,
+        ...data,
       };
-    } catch (e) {
+    } catch (e: any) {
       throw new InternalServerErrorException({
         status: false,
         message: e.message,
